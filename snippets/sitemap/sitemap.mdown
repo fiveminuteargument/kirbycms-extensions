@@ -1,0 +1,43 @@
+# Sitemap Snippet 1.0
+
+## What is it?
+
+This snippet generates a simple sitemap for your site.
+
+## Installation 
+
+Put the sitemap.php file in your site/snippets folder
+
+## How to use it?
+
+    <?php snippet('sitemap') ?>
+	    
+I recommend the following setup:
+
+* Create a `content/sitemap/sitemap.txt` file. Just use it to give your sitemap
+  page a title.
+
+* Create a `content/sitemap/sitemap.css` stylesheet. Mine is very simple:
+
+        .sitemap ul { margin: 0.5em 0 0.5em 2em; }
+        .sitemap li { margin-bottom: 0.5em; }
+
+* Use the following method in your header snippet to include the custom
+  stylesheet on your sitemap page:
+
+        <?php foreach($page->files()->findByExtension('css') as $css) echo css($css->url()); ?>
+
+  See [Art-directed blog posts](http://getkirby.com/blog/art-directed-posts) for
+  more info
+
+* Use a [page-specific template](http://getkirby.com/docs/templates),
+  `sitemap.php` to call the `snippet()` function to insert the sitemap on your
+  sitemap page.
+
+* Navigate to `/sitemap` (or the equivalent for your site) and enjoy.
+
+See [this gist](https://gist.github.com/1556344) for sample files.
+
+## Author
+Bobby Jack
+<http://fiveminuteargument.com>
