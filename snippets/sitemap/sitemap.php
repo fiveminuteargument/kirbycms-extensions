@@ -1,15 +1,15 @@
-<ul class="sitemap"><?php foreach ($pages->visible() AS $p) show_page($p); ?></ul>
-<?php
-function show_page($page)
-{
-  $children = $page->children()->visible();
+<ul<?php if (!isset($map_pages)) echo ' class="sitemap"'; ?>>
+<?php if(!isset($map_visible)) $map_visible = true;
+if(!isset($map_pages)) $map_pages = $map_visible ? $pages->visible() : $pages;
+
+foreach ($map_pages AS $map_page):
+  $children = $map_visible ? $map_page->children()->visible() : $map_page->children();
 ?>
   <li>
-    <a href="<?php echo $page->url(); ?>"><?php echo $page->title(); ?></a>
-    <?php if ($children->countVisible()): ?>
-    <ul><?php foreach ($children as $child) show_page($child); ?></ul>
-    <?php endif ?>
+    <a href="<?php echo $map_page->url(); ?>"><?php echo $map_page->title(); ?></a>
+    <?php if (count($children->_)) snippet('sitemap', array('map_pages' => $children, 'map_visible' => $map_visible)); ?>
   </li>
 <?php
-}
+endforeach;
 ?>
+</ul>

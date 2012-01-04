@@ -11,7 +11,12 @@ Put the sitemap.php file in your site/snippets folder
 ## How to use it?
 
     <?php snippet('sitemap') ?>
-	    
+
+By default, only visible pages will be displayed. To show *all* pages, pass a
+TRUE value via the `map_visible` parameter, e.g.
+
+    <?php snippet('sitemap', array('map_visible' => TRUE)) ?>
+
 I recommend the following setup:
 
 * Create a `content/sitemap/sitemap.txt` file. Just use it to give your sitemap
